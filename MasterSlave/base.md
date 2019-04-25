@@ -1,7 +1,6 @@
-# 主从：MySQL设置主从同步基础设置
 #### MySQL主从同步机制
 MySQL主从同步是在MySQL主从复制(Master-Slave Replication)基础上实现的，通过设置在Master MySQL上的binlog(使其处于打开状态)，Slave MySQL上通过一个I/O线程从Master MySQL上读取binlog，然后传输到Slave MySQL的中继日志中，然后Slave MySQL的SQL线程从中继日志中读取中继日志，然后应用到Slave MySQL的数据库中。这样实现了主从数据同步功能。
-![6ac467e603c3b4917148f6cf321884cf.jpeg](evernotecid://54E82095-1072-404C-B4DA-2A03D578D734/wwwevernotecom/195757684/ENResource/p315)
+![6ac467e603c3b4917148f6cf321884cf](主从：MySQL设置主从同步基础设置.resources/82AC38AE-FA03-4791-AE4C-986926320638.jpg)
 #### MySQL主从同步作用
 1. 可以作为一种备份机制，相当于热备份
 2. 可有用来做读写分析，均衡数据库负载
@@ -299,5 +298,3 @@ func printResult(query *sql.Rows) {
 }
 ```
 ###### 登录从库服务器查看数据
-
-
