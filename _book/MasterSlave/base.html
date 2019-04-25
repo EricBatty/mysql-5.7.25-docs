@@ -1,0 +1,548 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>主从：MySQL设置主从同步基础设置 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="command.html" />
+    
+    
+    <link rel="prev" href="../output/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../output/">
+            
+                <a href="../output/">
+            
+                    
+                    主   从
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="base.html">
+            
+                <a href="base.html">
+            
+                    
+                    主从：MySQL设置主从同步基础设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="command.html">
+            
+                <a href="command.html">
+            
+                    
+                    主从: 有关主从设置的一些命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >主从：MySQL设置主从同步基础设置</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x4E3B;&#x4ECE;&#xFF1A;mysql&#x8BBE;&#x7F6E;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x57FA;&#x7840;&#x8BBE;&#x7F6E;">&#x4E3B;&#x4ECE;&#xFF1A;MySQL&#x8BBE;&#x7F6E;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x57FA;&#x7840;&#x8BBE;&#x7F6E;</h1>
+<h4 id="mysql&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x673A;&#x5236;">MySQL&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x673A;&#x5236;</h4>
+<p>MySQL&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x662F;&#x5728;MySQL&#x4E3B;&#x4ECE;&#x590D;&#x5236;(Master-Slave Replication)&#x57FA;&#x7840;&#x4E0A;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x5728;Master MySQL&#x4E0A;&#x7684;binlog(&#x4F7F;&#x5176;&#x5904;&#x4E8E;&#x6253;&#x5F00;&#x72B6;&#x6001;)&#xFF0C;Slave MySQL&#x4E0A;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;I/O&#x7EBF;&#x7A0B;&#x4ECE;Master MySQL&#x4E0A;&#x8BFB;&#x53D6;binlog&#xFF0C;&#x7136;&#x540E;&#x4F20;&#x8F93;&#x5230;Slave MySQL&#x7684;&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#x4E2D;&#xFF0C;&#x7136;&#x540E;Slave MySQL&#x7684;SQL&#x7EBF;&#x7A0B;&#x4ECE;&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#x4E2D;&#x8BFB;&#x53D6;&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#xFF0C;&#x7136;&#x540E;&#x5E94;&#x7528;&#x5230;Slave MySQL&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x3002;&#x8FD9;&#x6837;&#x5B9E;&#x73B0;&#x4E86;&#x4E3B;&#x4ECE;&#x6570;&#x636E;&#x540C;&#x6B65;&#x529F;&#x80FD;&#x3002;
+<img src="evernotecid://54E82095-1072-404C-B4DA-2A03D578D734/wwwevernotecom/195757684/ENResource/p315" alt="6ac467e603c3b4917148f6cf321884cf.jpeg"></p>
+<h4 id="mysql&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x4F5C;&#x7528;">MySQL&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x4F5C;&#x7528;</h4>
+<ol>
+<li>&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4E00;&#x79CD;&#x5907;&#x4EFD;&#x673A;&#x5236;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x70ED;&#x5907;&#x4EFD;</li>
+<li>&#x53EF;&#x6709;&#x7528;&#x6765;&#x505A;&#x8BFB;&#x5199;&#x5206;&#x6790;&#xFF0C;&#x5747;&#x8861;&#x6570;&#x636E;&#x5E93;&#x8D1F;&#x8F7D;<h4 id="mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;">MySQL&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;</h4>
+<h5 id="&#x4E00;&#x3001;&#x51C6;&#x5907;">&#x4E00;&#x3001;&#x51C6;&#x5907;</h5>
+</li>
+<li>&#x4E3B;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x7248;&#x672C;&#x4E00;&#x81F4;</li>
+<li>&#x4E3B;&#x4ECE;&#x6570;&#x636E;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x3002;&#x5982;&#x679C;&#x540E;&#x6DFB;&#x52A0;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x9700;&#x8981;&#x5148;&#x5C06;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x6570;&#x636E;&#x62F7;&#x8D1D;&#x5230;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#x3002;</li>
+</ol>
+<h5 id="&#x4E8C;&#x3001;&#x4E3B;&#x6570;&#x636E;&#x5E93;-master-&#x4FEE;&#x6539;">&#x4E8C;&#x3001;&#x4E3B;&#x6570;&#x636E;&#x5E93; Master &#x4FEE;&#x6539;</h5>
+<h6 id="1-&#x4FEE;&#x6539;-mysql-&#x914D;&#x7F6E;">1. &#x4FEE;&#x6539; MySQL &#x914D;&#x7F6E;</h6>
+<pre><code>#&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x540D;&#x4F4D;&#x7F6E;
+log-bin = mysql-binlog.log
+#&#x63A7;&#x5236;binlog&#x7684;&#x5199;&#x5165;&#x9891;&#x7387;&#x3002;&#x6BCF;&#x6267;&#x884C;&#x591A;&#x5C11;&#x6B21;&#x4E8B;&#x52A1;&#x5199;&#x5165;&#x4E00;&#x6B21; &#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x6027;&#x80FD;&#x6D88;&#x8017;&#x5F88;&#x5927;&#xFF0C;&#x4F46;&#x53EF;&#x51CF;&#x5C0F;MySQL&#x5D29;&#x6E83;&#x9020;&#x6210;&#x7684;&#x635F;&#x5931;
+sync_binlog = 5
+#&#x65E5;&#x5FD7;&#x683C;&#x5F0F;&#xFF0C;&#x5EFA;&#x8BAE;mixed 
+#statement &#x4FDD;&#x5B58;SQL&#x8BED;&#x53E5; row &#x4FDD;&#x5B58;&#x5F71;&#x54CD;&#x8BB0;&#x5F55;&#x6570;&#x636E; mixed &#x524D;&#x9762;&#x4E24;&#x79CD;&#x7684;&#x7ED3;&#x5408;
+binlog_format = mixed
+#&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x7AEF; ID &#x53F7;
+server-id = 1
+#&#x5982;&#x679C;&#x6839;&#x636E;&#x9700;&#x8981;&#x800C;&#x540C;&#x6B65;&#x6570;&#x636E;&#x5E93;master&#x8981;&#x8BBE;&#x7F6E;binglog_format = row &#x624D;&#x4F1A;&#x751F;&#x6548;&#x3002;
+#&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF08;&#x591A;&#x6570;&#x636E;&#x5E93;&#x7528;&#x9017;&#x53F7;&#xFF0C;&#x9694;&#x5F00;&#xFF09;,&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x4E0D;&#x5728;&#x5185;&#x7684;&#x4E0D;&#x540C;&#x6B65;&#x3002;&#xFF08;&#x4E0D;&#x6DFB;&#x52A0;&#x8FD9;&#x884C;&#x8868;&#x793A;&#x540C;&#x6B65;&#x6240;&#x6709;&#xFF09;
+#binlog-do-db = go
+#&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x4E2D;&#x5FFD;&#x7565;&#x6570;&#x636E;&#x5E93; &#xFF08;&#x591A;&#x6570;&#x636E;&#x5E93;&#x7528;&#x9017;&#x53F7;&#xFF0C;&#x9694;&#x5F00;&#xFF09;,&#x4ECE;&#x5E93;&#x4E0D;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x6BD4;&#x5982;mysql&#x7B49;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x5404;&#x81EA;&#x6743;&#x9650;&#x3002;
+#binlog-ignore-db = mysql,local
+</code></pre><h6 id="2-&#x91CD;&#x542F;-mysql&#xFF0C;&#x521B;&#x5EFA;&#x7528;&#x4E8E;&#x540C;&#x6B65;&#x7684;&#x8D26;&#x6237;">2. &#x91CD;&#x542F; mysql&#xFF0C;&#x521B;&#x5EFA;&#x7528;&#x4E8E;&#x540C;&#x6B65;&#x7684;&#x8D26;&#x6237;</h6>
+<pre><code>#&#x91CD;&#x542F; mysql
+
+#&#x521B;&#x5EFA;slave&#x8D26;&#x53F7;
+mysql&gt; create user &apos;slave&apos;@&apos;%&apos; identified by &apos;MyNewPass4!&apos;;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql&gt; grant replication slave on *.* to &apos;slave&apos;@&apos;%&apos;;
+Query OK, 0 rows affected (0.00 sec)
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+#&#x67E5;&#x770B;&#x5F53;&#x524D; master &#x72B6;&#x6001;
+mysql&gt; show master status;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000002 |      154 |              |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+1 row in set (0.00 sec)
+</code></pre><p>&#x6CE8;&#x610F;&#xFF1A;&#x64CD;&#x4F5C;&#x5230;&#x8FD9;&#x91CC;&#x4E0D;&#x8981;&#x5728;&#x64CD;&#x4F5C;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x52A0;&#x5199;&#x9501;&#xFF0C;&#x9632;&#x6B62;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x72B6;&#x6001;&#x503C;&#x53D8;&#x5316;</p>
+<h5 id="&#x4E09;&#x3001;&#x4ECE;&#x6570;&#x636E;&#x5E93;-slave-&#x4FEE;&#x6539;">&#x4E09;&#x3001;&#x4ECE;&#x6570;&#x636E;&#x5E93; Slave &#x4FEE;&#x6539;</h5>
+<h6 id="1-&#x4FEE;&#x6539;mysql&#x914D;&#x7F6E;">1. &#x4FEE;&#x6539;MySQL&#x914D;&#x7F6E;</h6>
+<pre><code>[root@node90 mysql]# vi etc/my.cnf
+#&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x4E2D;&#x7EE7;&#x4FE1;&#x606F;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x8BE5;&#x6587;&#x4F4D;&#x4E8E;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x9ED8;&#x8BA4;&#x6587;&#x4EF6;&#x540D; relay-log.info
+#relay-log-info-file=filename
+#master&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#x6587;&#x4EF6;&#xFF0C;&#x9ED8;&#x8BA4;&#x6587;&#x4EF6;&#x540D;&#x4E3A;master.info&#x3002;&#x6587;&#x4EF6;&#x4E2D;&#x5305;&#x542B;master&#x7684;&#x8BFB;&#x4F4D;&#x7F6E;&#xFF0C;&#x4EE5;&#x53CA;&#x8FDE;&#x63A5;master&#x548C;&#x542F;&#x52A8;&#x590D;&#x5236;&#x5FC5;&#x9700;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#x3002;
+#mater-info-file=filename
+# &#x4ECE;&#x6570;&#x636E;&#x5E93;&#x7AEF;ID&#x53F7;
+server-id =2
+#&#x5982;&#x679C;&#x6839;&#x636E;&#x9700;&#x8981;&#x800C;&#x540C;&#x6B65;&#x6570;&#x636E;&#x5E93;master&#x8981;&#x8BBE;&#x7F6E;binglog_format = row &#x624D;&#x4F1A;&#x751F;&#x6548;&#x3002;
+#&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x5E93;&#x548C;&#x8868;&#x4EE5;&#x53CA;&#x4E0D;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x5E93;&#x548C;&#x8868;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x540C;&#x6B65;&#x67D0;&#x4E2A;&#x5E93; &#x4ECE;&#x6570;&#x636E;&#x5E93;&#x65E0;&#x6CD5;&#x5E72;&#x6D89;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x914D;&#x7F6E;&#x3002;
+#&#x8BBE;&#x5B9A;&#x9700;&#x8981;&#x590D;&#x5236;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF08;&#x591A;&#x6570;&#x636E;&#x5E93;&#x4F7F;&#x7528;&#x9017;&#x53F7;&#xFF0C;&#x9694;&#x5F00;&#xFF09;
+#replicate-do-db    
+&#x8BBE;&#x5B9A;&#x9700;&#x8981;&#x5FFD;&#x7565;&#x7684;&#x590D;&#x5236;&#x6570;&#x636E;&#x5E93; &#xFF08;&#x591A;&#x6570;&#x636E;&#x5E93;&#x4F7F;&#x7528;&#x9017;&#x53F7;&#xFF0C;&#x9694;&#x5F00;&#xFF09;
+#replicate-ignore-db 
+&#x8BBE;&#x5B9A;&#x9700;&#x8981;&#x590D;&#x5236;&#x7684;&#x8868;
+#replicate-do-table  
+&#x8BBE;&#x5B9A;&#x9700;&#x8981;&#x5FFD;&#x7565;&#x7684;&#x590D;&#x5236;&#x8868; 
+#replicate-ignore-table 
+&#x540C;replication-do-table&#x529F;&#x80FD;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x914D;&#x7B26;
+#replicate-wild-do-table 
+&#x540C;replication-ignore-table&#x529F;&#x80FD;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x52A0;&#x901A;&#x914D;&#x7B26;
+#replicate-wild-ignore-table
+</code></pre><h6 id="2-&#x4ECE;&#x5E93;&#x91CD;&#x542F;mysql-&#x67E5;&#x770B;slave&#x72B6;&#x6001;-&#x5728;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x5F00;&#x59CB;&#x8BBE;&#x7F6E;&#x4E3B;&#x4ECE;">2. &#x4ECE;&#x5E93;&#x91CD;&#x542F;mysql &#x67E5;&#x770B;slave&#x72B6;&#x6001; &#x5728;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x5F00;&#x59CB;&#x8BBE;&#x7F6E;&#x4E3B;&#x4ECE;</h6>
+<pre><code>mysql&gt; show master status\G
+*************************** 1. row ***************************
+             File: mysql-bin.000005
+         Position: 154
+     Binlog_Do_DB: 
+ Binlog_Ignore_DB: 
+Executed_Gtid_Set: 
+1 row in set (0.00 sec)
+#&#x53D1;&#x73B0;&#x4E0E;maste&#x6570;&#x636E;&#x5E93;&#x7684;binlog&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x5927;&#x4E0D;&#x4E00;&#x6837;
+</code></pre><h6 id="3-&#x540C;&#x6B65;&#x4E3B;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6570;&#x636E;">3. &#x540C;&#x6B65;&#x4E3B;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6570;&#x636E;</h6>
+<p><strong>a. &#x67E5;&#x770B;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6570;&#x636E;</strong></p>
+<pre><code>[root@node90 mysql]# mysql -u root -p
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| go                 |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+</code></pre><p><strong>b. &#x5C06;maste&#x52A0;&#x5199;&#x9501; &#x7981;&#x6B62;&#x5199;&#x5165;&#x6570;&#x636E;&#x9632;&#x6B62;&#x72B6;&#x6001;&#x503C;&#x6539;&#x53D8;</strong></p>
+<pre><code>mysql&gt; flush tables with read lock;
+Query OK, 0 rows affected (0.01 sec)
+</code></pre><p><strong>c. &#x67E5;&#x770B;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6570;&#x636E;</strong></p>
+<pre><code>mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+</code></pre><p><strong>d. &#x4ECE;&#x5E93;&#x7F3A;&#x5C11;go&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5982;&#x679C;&#x73B0;&#x5728;&#x76F4;&#x63A5;&#x5F00;&#x59CB;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x90A3;&#x4E48;go&#x6570;&#x636E;&#x5E93;&#x7684;&#x5386;&#x53F2;&#x6570;&#x636E;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x5C06;&#x7F3A;&#x5C11;&#x3002;&#x6240;&#x4EE5;&#x628A;go&#x6570;&#x636E;&#x5E93;&#x7684;&#x5386;&#x53F2;&#x6570;&#x636E;&#x624B;&#x52A8;&#x540C;&#x6B65;&#x5230;&#x4ECE;&#x6570;&#x636E;&#x3002;</strong></p>
+<pre><code>[root@node90 mysql]# [root@node90 ~]# mysqldump -u root -p go &gt; go.sql
+[root@node90 ~]# scp go.sql root@192.168.0.91:
+[root@node91 ~]# mysql -u root -p go &lt; go.sql
+#&#x91CD;&#x542F;&#x4ECE;&#x5E93;
+[root@node91 mysql]# ./support-files/mysql.server stop 
+Shutting down MySQL. SUCCESS! 
+[root@node91 mysql]# ./support-files/mysql.server start
+Starting MySQL. SUCCESS!
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| go                 |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+</code></pre><p><strong>e. &#x540C;&#x6837;&#x62E5;&#x6709;&#x4E86;go&#x6570;&#x636E;&#x5E93;,&#x62E5;&#x6709;&#x4E86;go&#x6570;&#x636E;&#x5E93;&#x7684;&#x540C;&#x6837;&#x6570;&#x636E;&#x3002;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x91CD;&#x7F6E;binlog&#x65E5;&#x5FD7;&#xFF0C;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x3002;</strong></p>
+<pre><code>mysql&gt; reset master;
+Query OK, 0 rows affected (0.01 sec)
+#&#x5206;&#x522B;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x662F;&#x5426;&#x76F8;&#x540C;&#x3002;
+mysql&gt; show master status\G
+*************************** 1. row ***************************
+             File: mysql-bin.000001
+         Position: 154
+     Binlog_Do_DB: 
+ Binlog_Ignore_DB: 
+Executed_Gtid_Set: 
+1 row in set (0.00 sec)
+</code></pre><p><strong>f. &#x4ECE;&#x5E93;&#x5F00;&#x59CB;&#x540C;&#x6B65;&#x4E3B;&#x5E93;&#xFF0C;&#x6267;&#x884C;&#x540C;&#x6B65;&#x547D;&#x4EE4;&#x3002;</strong></p>
+<pre><code>mysql&gt; change master to master_host=&apos;192.168.0.90&apos;, master_user=&apos;slave&apos;, master_password=&apos;MyNewPass4!&apos;, master_log_file=&apos;mysql-bin.000001&apos;,master_log_pos=154;
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+mysql&gt; start slave;
+Query OK, 0 rows affected (0.01 sec)
+mysql&gt; show slave status\G
+*************************** 1. row ***************************
+               Slave_IO_State: Waiting for master to send event
+                  Master_Host: 192.168.0.90
+                  Master_User: slave
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: mysql-bin.000001
+          Read_Master_Log_Pos: 154
+               Relay_Log_File: node91-relay-bin.000002
+                Relay_Log_Pos: 320
+        Relay_Master_Log_File: mysql-bin.000001
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB: go
+          Replicate_Ignore_DB: 
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: 0
+                   Last_Error: 
+                 Skip_Counter: 0
+          Exec_Master_Log_Pos: 154
+              Relay_Log_Space: 528
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: 0
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File: 
+           Master_SSL_CA_Path: 
+              Master_SSL_Cert: 
+            Master_SSL_Cipher: 
+               Master_SSL_Key: 
+        Seconds_Behind_Master: 0
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Master_Server_Id: 1
+                  Master_UUID: c578711a-663b-11e9-8247-000c292cf1a3
+             Master_Info_File: /usr/local/mysql/data/master.info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates
+           Master_Retry_Count: 86400
+                  Master_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Master_SSL_Crl: 
+           Master_SSL_Crlpath: 
+           Retrieved_Gtid_Set: 
+            Executed_Gtid_Set: 
+                Auto_Position: 0
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Master_TLS_Version: 
+1 row in set (0.00 sec)
+</code></pre><p><strong>g. &#x91CA;&#x653E; master &#x7684;&#x5168;&#x5C40;&#x9501;</strong></p>
+<pre><code>mysql&gt; unlock tables;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre><h5 id="&#x6D4B;&#x8BD5;">&#x6D4B;&#x8BD5;</h5>
+<h6 id="&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;">&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;</h6>
+<pre><code>package main
+
+import (
+    &quot;database/sql&quot;
+    &quot;fmt&quot;
+    &quot;reflect&quot;
+    _ &quot;github.com/go-sql-driver/mysql&quot;
+)
+
+func main() {
+    db, err := sql.Open(&quot;mysql&quot;, &quot;go:MyNewPass4!@tcp(192.168.0.90:3306)/?charset=utf8&quot;)
+    checkErr(err)
+    db.Query(&quot;use go &quot;)
+    //db.Query(&quot;create table go.temtab(c1 int, c2 varchar(20), c3 varchar(30))&quot;)
+    //db.Query(&quot;insert into go.temtab values (101, &apos;&#x5F20;&#x91D1;&#x6653;&apos;, &apos;192.168.0.254&apos;), (102, &apos;&#x5F20;&#x5FD7;&#x4F1F;&apos;, &apos;192.168.0.81&apos;)&quot;)
+    db.Query(&quot;insert into go.temtab values (103, &apos;&#x5F20;&#x4E09;&apos;, &apos;192.168.0.253&apos;), (104, &apos;&#x674E;&#x56DB;&apos;, &apos;192.168.0.82&apos;)&quot;)
+
+    query, err := db.Query(&quot;select * from go.temtab&quot;)
+    checkErr(err)
+    v := reflect.ValueOf(query)
+    fmt.Println(v)
+    printResult(query)
+    db.Close()
+
+}
+
+
+func checkErr(errMasg error)  {
+    if errMasg != nil {
+        panic(errMasg)
+    }
+
+
+}
+func printResult(query *sql.Rows) {
+    column, _ := query.Columns()              //&#x8BFB;&#x51FA;&#x67E5;&#x8BE2;&#x51FA;&#x7684;&#x5217;&#x5B57;&#x6BB5;&#x540D;
+    values := make([][]byte, len(column))     //values&#x662F;&#x6BCF;&#x4E2A;&#x5217;&#x7684;&#x503C;&#xFF0C;&#x8FD9;&#x91CC;&#x83B7;&#x53D6;&#x5230;byte&#x91CC;
+    scans := make([]interface{}, len(column)) //&#x56E0;&#x4E3A;&#x6BCF;&#x6B21;&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#x7684;&#x5217;&#x662F;&#x4E0D;&#x5B9A;&#x957F;&#x7684;&#xFF0C;&#x7528;len(column)&#x5B9A;&#x4F4F;&#x5F53;&#x6B21;&#x67E5;&#x8BE2;&#x7684;&#x957F;&#x5EA6;
+    for i := range values {                   //&#x8BA9;&#x6BCF;&#x4E00;&#x884C;&#x6570;&#x636E;&#x90FD;&#x586B;&#x5145;&#x5230;[][]byte&#x91CC;&#x9762;
+        scans[i] = &amp;values[i]
+    }
+    results := make(map[int]map[string]string) //&#x6700;&#x540E;&#x5F97;&#x5230;&#x7684;map
+    i := 0
+    for query.Next() { //&#x5FAA;&#x73AF;&#xFF0C;&#x8BA9;&#x6E38;&#x6807;&#x5F80;&#x4E0B;&#x79FB;&#x52A8;
+        if err := query.Scan(scans...); err != nil { //query.Scan&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#x7684;&#x4E0D;&#x5B9A;&#x957F;&#x503C;&#x653E;&#x5230;scans[i] = &amp;values[i],&#x4E5F;&#x5C31;&#x662F;&#x6BCF;&#x884C;&#x90FD;&#x653E;&#x5728;values&#x91CC;
+            fmt.Println(err)
+            return
+        }
+        row := make(map[string]string) //&#x6BCF;&#x884C;&#x6570;&#x636E;
+        for k, v := range values {     //&#x6BCF;&#x884C;&#x6570;&#x636E;&#x662F;&#x653E;&#x5728;values&#x91CC;&#x9762;&#xFF0C;&#x73B0;&#x5728;&#x628A;&#x5B83;&#x632A;&#x5230;row&#x91CC;
+            key := column[k]
+            row[key] = string(v)
+        }
+        results[i] = row //&#x88C5;&#x5165;&#x7ED3;&#x679C;&#x96C6;&#x4E2D;
+        i++
+    }
+    for k, v := range results { //&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#x7684;&#x6570;&#x7EC4;
+        fmt.Println(k, v)
+    }
+}
+</code></pre><h6 id="&#x767B;&#x5F55;&#x4ECE;&#x5E93;&#x670D;&#x52A1;&#x5668;&#x67E5;&#x770B;&#x6570;&#x636E;">&#x767B;&#x5F55;&#x4ECE;&#x5E93;&#x670D;&#x52A1;&#x5668;&#x67E5;&#x770B;&#x6570;&#x636E;</h6>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../output/" class="navigation navigation-prev " aria-label="Previous page: 主   从">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="command.html" class="navigation navigation-next " aria-label="Next page: 主从: 有关主从设置的一些命令">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"主从：MySQL设置主从同步基础设置","level":"1.2.1","depth":2,"next":{"title":"主从: 有关主从设置的一些命令","level":"1.2.2","depth":2,"path":"MasterSlave/command.md","ref":"MasterSlave/command.md","articles":[]},"previous":{"title":"主   从","level":"1.2","depth":1,"path":"output/README.md","ref":"output/README.md","articles":[{"title":"主从：MySQL设置主从同步基础设置","level":"1.2.1","depth":2,"path":"MasterSlave/base.md","ref":"MasterSlave/base.md","articles":[]},{"title":"主从: 有关主从设置的一些命令","level":"1.2.2","depth":2,"path":"MasterSlave/command.md","ref":"MasterSlave/command.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"MasterSlave/base.md","mtime":"2019-04-25T09:13:37.808Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-25T09:14:06.842Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
