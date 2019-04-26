@@ -253,8 +253,7 @@ func main() {
 	db, err := sql.Open("mysql", "go:MyNewPass4!@tcp(192.168.0.90:3306)/?charset=utf8")
 	checkErr(err)
 	db.Query("use go ")
-	//db.Query("create table go.temtab(c1 int, c2 varchar(20), c3 varchar(30))")
-	//db.Query("insert into go.temtab values (101, '张金晓', '192.168.0.254'), (102, '张志伟', '192.168.0.81')")
+	db.Query("create table go.temtab(c1 int, c2 varchar(20), c3 varchar(30))")
 	db.Query("insert into go.temtab values (103, '张三', '192.168.0.253'), (104, '李四', '192.168.0.82')")
 
 	query, err := db.Query("select * from go.temtab")
