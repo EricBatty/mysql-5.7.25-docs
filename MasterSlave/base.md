@@ -164,8 +164,10 @@ mysql> show master status\G
 Executed_Gtid_Set: 
 1 row in set (0.00 sec)
 ```
-**f. 从库开始同步主库，执行同步命令。**
+**f. 从库初始化slave状态，然后开始同步主库，执行同步命令。**
 ```
+mysql> stop slave;  #停止slave
+mysql> reset slave;  #重新设置slave
 mysql> change master to master_host='192.168.0.90', master_user='slave', master_password='MyNewPass4!', master_log_file='mysql-bin.000001',master_log_pos=154;
 Query OK, 0 rows affected, 2 warnings (0.02 sec)
 mysql> start slave;
