@@ -5,10 +5,10 @@ build() {
 }
 
 commit() {
-	echo "添加本次提交注释"
+	read -p  "添加本次提交注释:" comm
 	git add .
-	comm=$1
-	git commit -m  '${comm}'
+	echo $comm
+	git commit -m  ''$comm''
 }
 
 push() {
