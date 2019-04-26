@@ -7,7 +7,7 @@ build() {
 commit() {
 	echo "添加本次提交注释"
 	git add .
-	git commit -m  '`$1`'
+	git commit -m  '"$1"'
 }
 
 push() {
