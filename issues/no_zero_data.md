@@ -41,7 +41,8 @@ SELECT * FROM users WHERE created = '0000-00-00 00:00:00'；
 
 #### 遇到错误的原因：
 sql_mode会话设置可能包括NO_ZERO_DATE。参考：[http：//dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date](http：//dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date)
-1. 查看sql_mode设置：
+
+##### 1. 查看sql_mode设置：
 ```
 mysql> SHOW VARIABLES LIKE 'sql_mode' ;
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -62,10 +63,13 @@ mysql> SELECT @@sql_mode ;
 ```
 
 #### 修复当前问题，以便在运行ALTER TABLE等语句时不会抛出错误。
-几个修复方法：
-1. sql_mode通过删除 `NO_ZERO_DATE` 和更改允许零日期 `NO_ZERO_IN_DATE`。更改可以在my.cnf文件中应用，因此重启MySQL Server后，sql_mode变量将初始化为my.cnf中的设置。
 
-对于临时更改，我们可以使用单个会话修改设置，而无需进行全局更改。
+##### 几个修复方法：
+
+##### 1. sql_mode通过删除 `NO_ZERO_DATE` 和更改允许零日期 `NO_ZERO_IN_DATE`。更改可以通过命令行临时修改也可以通过my.cnf永久更改。
+
+###### 1. 对于临时更改，我们可以使用单个会话修改设置，而无需进行全局更改。
+
 ```
 -- save current setting of sql_mode
 SET @old_sql_mode := @@sql_mode ;
@@ -82,7 +86,9 @@ SET @@sql_mode := @new_sql_mode ;
 -- to the original sql_mode setting, from the value we saved
 SET @@sql_mode := @old_sql_mode ;
 ```
-对于全局修改my.cnf
+
+###### 2. 对于全局修改my.cnf
+
 ```
 在 my.cnf 文件中 mysqld 区域添加
 [mysqld]
@@ -90,11 +96,15 @@ SET @@sql_mode := @old_sql_mode ;
 sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
 ...
 ```
-2. 更改created列以允许NULL值，并更新现有行以将零日期更改为空值
+
+##### 2. 更改created列以允许NULL值，并更新现有行以将零日期更改为空值
+
 ```
 UPDATE  `users` SET `created` = NULL WHERE `created` = '0000-00-00 00:00:00'
 ```
-3. 更新现有行以将零日期更改为有效日期
+
+##### 3. 更新现有行以将零日期更改为有效日期
+
 ```
 UPDATE  `users` SET `created` = '1970-01-02' WHERE `created` = '0000-00-00 00:00:00' 
 ```

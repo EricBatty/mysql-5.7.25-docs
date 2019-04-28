@@ -304,10 +304,8 @@ MySQL&#x4E0D;&#x6B63;&#x786E;&#x7684;&#x65E5;&#x671F;&#x65F6;&#x95F4;&#x503C;&#x
 SELECT * FROM users WHERE created = &apos;0000-00-00 00:00:00&apos;&#xFF1B;
 </code></pre><h4 id="&#x9047;&#x5230;&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;&#xFF1A;">&#x9047;&#x5230;&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;&#xFF1A;</h4>
 <p>sql_mode&#x4F1A;&#x8BDD;&#x8BBE;&#x7F6E;&#x53EF;&#x80FD;&#x5305;&#x62EC;NO_ZERO_DATE&#x3002;&#x53C2;&#x8003;&#xFF1A;<a href="http&#xFF1A;/dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date">http&#xFF1A;//dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date</a></p>
-<ol>
-<li>&#x67E5;&#x770B;sql_mode&#x8BBE;&#x7F6E;&#xFF1A;
-```
-mysql&gt; SHOW VARIABLES LIKE &apos;sql_mode&apos; ;
+<h5 id="1-&#x67E5;&#x770B;sqlmode&#x8BBE;&#x7F6E;&#xFF1A;">1. &#x67E5;&#x770B;sql_mode&#x8BBE;&#x7F6E;&#xFF1A;</h5>
+<pre><code>mysql&gt; SHOW VARIABLES LIKE &apos;sql_mode&apos; ;
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | Variable_name | Value                                                                                                                                     |
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -321,37 +319,36 @@ mysql&gt; SELECT @@sql_mode ;
 +-------------------------------------------------------------------------------------------------------------------------------------------+
 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION |
 +-------------------------------------------------------------------------------------------------------------------------------------------+
-1 row in set (0.00 sec)</li>
-</ol>
-<pre><code>
-#### &#x4FEE;&#x590D;&#x5F53;&#x524D;&#x95EE;&#x9898;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x8FD0;&#x884C;ALTER TABLE&#x7B49;&#x8BED;&#x53E5;&#x65F6;&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#x3002;
-&#x51E0;&#x4E2A;&#x4FEE;&#x590D;&#x65B9;&#x6CD5;&#xFF1A;
-1. sql_mode&#x901A;&#x8FC7;&#x5220;&#x9664; `NO_ZERO_DATE` &#x548C;&#x66F4;&#x6539;&#x5141;&#x8BB8;&#x96F6;&#x65E5;&#x671F; `NO_ZERO_IN_DATE`&#x3002;&#x66F4;&#x6539;&#x53EF;&#x4EE5;&#x5728;my.cnf&#x6587;&#x4EF6;&#x4E2D;&#x5E94;&#x7528;&#xFF0C;&#x56E0;&#x6B64;&#x91CD;&#x542F;MySQL Server&#x540E;&#xFF0C;sql_mode&#x53D8;&#x91CF;&#x5C06;&#x521D;&#x59CB;&#x5316;&#x4E3A;my.cnf&#x4E2D;&#x7684;&#x8BBE;&#x7F6E;&#x3002;
+1 row in set (0.00 sec)
+</code></pre><h4 id="&#x4FEE;&#x590D;&#x5F53;&#x524D;&#x95EE;&#x9898;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x8FD0;&#x884C;alter-table&#x7B49;&#x8BED;&#x53E5;&#x65F6;&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#x3002;">&#x4FEE;&#x590D;&#x5F53;&#x524D;&#x95EE;&#x9898;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x8FD0;&#x884C;ALTER TABLE&#x7B49;&#x8BED;&#x53E5;&#x65F6;&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#x3002;</h4>
+<h5 id="&#x51E0;&#x4E2A;&#x4FEE;&#x590D;&#x65B9;&#x6CD5;&#xFF1A;">&#x51E0;&#x4E2A;&#x4FEE;&#x590D;&#x65B9;&#x6CD5;&#xFF1A;</h5>
+<h5 id="1-sqlmode&#x901A;&#x8FC7;&#x5220;&#x9664;-nozerodate-&#x548C;&#x66F4;&#x6539;&#x5141;&#x8BB8;&#x96F6;&#x65E5;&#x671F;-nozeroindate&#x3002;&#x66F4;&#x6539;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x4E34;&#x65F6;&#x4FEE;&#x6539;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;mycnf&#x6C38;&#x4E45;&#x66F4;&#x6539;&#x3002;">1. sql_mode&#x901A;&#x8FC7;&#x5220;&#x9664; <code>NO_ZERO_DATE</code> &#x548C;&#x66F4;&#x6539;&#x5141;&#x8BB8;&#x96F6;&#x65E5;&#x671F; <code>NO_ZERO_IN_DATE</code>&#x3002;&#x66F4;&#x6539;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x4E34;&#x65F6;&#x4FEE;&#x6539;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;my.cnf&#x6C38;&#x4E45;&#x66F4;&#x6539;&#x3002;</h5>
+<h6 id="1-&#x5BF9;&#x4E8E;&#x4E34;&#x65F6;&#x66F4;&#x6539;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5355;&#x4E2A;&#x4F1A;&#x8BDD;&#x4FEE;&#x6539;&#x8BBE;&#x7F6E;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x8FDB;&#x884C;&#x5168;&#x5C40;&#x66F4;&#x6539;&#x3002;">1. &#x5BF9;&#x4E8E;&#x4E34;&#x65F6;&#x66F4;&#x6539;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5355;&#x4E2A;&#x4F1A;&#x8BDD;&#x4FEE;&#x6539;&#x8BBE;&#x7F6E;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x8FDB;&#x884C;&#x5168;&#x5C40;&#x66F4;&#x6539;&#x3002;</h6>
+<pre><code>-- save current setting of sql_mode
+SET @old_sql_mode := @@sql_mode ;
 
-&#x5BF9;&#x4E8E;&#x4E34;&#x65F6;&#x66F4;&#x6539;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5355;&#x4E2A;&#x4F1A;&#x8BDD;&#x4FEE;&#x6539;&#x8BBE;&#x7F6E;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x8FDB;&#x884C;&#x5168;&#x5C40;&#x66F4;&#x6539;&#x3002;
-</code></pre><p>-- save current setting of sql_mode
-SET @old_sql_mode := @@sql_mode ;</p>
-<p>-- derive a new value by removing NO_ZERO_DATE and NO_ZERO_IN_DATE
+-- derive a new value by removing NO_ZERO_DATE and NO_ZERO_IN_DATE
 SET @new_sql_mode := @old_sql_mode ;
 SET @new_sql_mode := TRIM(BOTH &apos;,&apos; FROM REPLACE(CONCAT(&apos;,&apos;,@new_sql_mode,&apos;,&apos;),&apos;,NO_ZERO_DATE,&apos;  ,&apos;,&apos;));
 SET @new_sql_mode := TRIM(BOTH &apos;,&apos; FROM REPLACE(CONCAT(&apos;,&apos;,@new_sql_mode,&apos;,&apos;),&apos;,NO_ZERO_IN_DATE,&apos;,&apos;,&apos;));
-SET @@sql_mode := @new_sql_mode ;</p>
-<p>-- perform the operation that errors due to &quot;zero dates&quot;</p>
-<p>-- when we are done with required operations, we can revert back
+SET @@sql_mode := @new_sql_mode ;
+
+-- perform the operation that errors due to &quot;zero dates&quot;
+
+-- when we are done with required operations, we can revert back
 -- to the original sql_mode setting, from the value we saved
-SET @@sql_mode := @old_sql_mode ;</p>
-<pre><code>&#x5BF9;&#x4E8E;&#x5168;&#x5C40;&#x4FEE;&#x6539;my.cnf
-</code></pre><p>&#x5728; my.cnf &#x6587;&#x4EF6;&#x4E2D; mysqld &#x533A;&#x57DF;&#x6DFB;&#x52A0;
+SET @@sql_mode := @old_sql_mode ;
+</code></pre><h6 id="2-&#x5BF9;&#x4E8E;&#x5168;&#x5C40;&#x4FEE;&#x6539;mycnf">2. &#x5BF9;&#x4E8E;&#x5168;&#x5C40;&#x4FEE;&#x6539;my.cnf</h6>
+<pre><code>&#x5728; my.cnf &#x6587;&#x4EF6;&#x4E2D; mysqld &#x533A;&#x57DF;&#x6DFB;&#x52A0;
 [mysqld]
 ...
 sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
-...</p>
-<pre><code>2. &#x66F4;&#x6539;created&#x5217;&#x4EE5;&#x5141;&#x8BB8;NULL&#x503C;&#xFF0C;&#x5E76;&#x66F4;&#x65B0;&#x73B0;&#x6709;&#x884C;&#x4EE5;&#x5C06;&#x96F6;&#x65E5;&#x671F;&#x66F4;&#x6539;&#x4E3A;&#x7A7A;&#x503C;
-</code></pre><p>UPDATE  <code>users</code> SET <code>created</code> = NULL WHERE <code>created</code> = &apos;0000-00-00 00:00:00&apos;</p>
-<pre><code>3. &#x66F4;&#x65B0;&#x73B0;&#x6709;&#x884C;&#x4EE5;&#x5C06;&#x96F6;&#x65E5;&#x671F;&#x66F4;&#x6539;&#x4E3A;&#x6709;&#x6548;&#x65E5;&#x671F;
-</code></pre><p>UPDATE  <code>users</code> SET <code>created</code> = &apos;1970-01-02&apos; WHERE <code>created</code> = &apos;0000-00-00 00:00:00&apos; 
-```</p>
-<blockquote>
+...
+</code></pre><h5 id="2-&#x66F4;&#x6539;created&#x5217;&#x4EE5;&#x5141;&#x8BB8;null&#x503C;&#xFF0C;&#x5E76;&#x66F4;&#x65B0;&#x73B0;&#x6709;&#x884C;&#x4EE5;&#x5C06;&#x96F6;&#x65E5;&#x671F;&#x66F4;&#x6539;&#x4E3A;&#x7A7A;&#x503C;">2. &#x66F4;&#x6539;created&#x5217;&#x4EE5;&#x5141;&#x8BB8;NULL&#x503C;&#xFF0C;&#x5E76;&#x66F4;&#x65B0;&#x73B0;&#x6709;&#x884C;&#x4EE5;&#x5C06;&#x96F6;&#x65E5;&#x671F;&#x66F4;&#x6539;&#x4E3A;&#x7A7A;&#x503C;</h5>
+<pre><code>UPDATE  `users` SET `created` = NULL WHERE `created` = &apos;0000-00-00 00:00:00&apos;
+</code></pre><h5 id="3-&#x66F4;&#x65B0;&#x73B0;&#x6709;&#x884C;&#x4EE5;&#x5C06;&#x96F6;&#x65E5;&#x671F;&#x66F4;&#x6539;&#x4E3A;&#x6709;&#x6548;&#x65E5;&#x671F;">3. &#x66F4;&#x65B0;&#x73B0;&#x6709;&#x884C;&#x4EE5;&#x5C06;&#x96F6;&#x65E5;&#x671F;&#x66F4;&#x6539;&#x4E3A;&#x6709;&#x6548;&#x65E5;&#x671F;</h5>
+<pre><code>UPDATE  `users` SET `created` = &apos;1970-01-02&apos; WHERE `created` = &apos;0000-00-00 00:00:00&apos;
+</code></pre><blockquote>
 <p>&#x6CE8;&#x610F;&#xFF1A;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5348;&#x591C;1970&#x5E74;1&#x6708;1&#x65E5;&#xFF08;&#x65E5;&#x671F;&#x65F6;&#x95F4;&#x503C;&apos;1970-01-01 00:00:00&apos;&#xFF09;&#x662F;&#x4E00;&#x4E2A;&#x201C;&#x96F6;&#x65E5;&#x201D;&#xFF0C;&#x8FD9;&#x5C06;&#x88AB;&#x8BC4;&#x5B9A;&#x4E3A;&apos;0000-00-00 00:00:00&apos;</p>
 </blockquote>
 
@@ -393,7 +390,7 @@ sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_E
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"问题: MySQL使用零值时间所出现的问题","level":"1.4.2","depth":2,"previous":{"title":"问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题","level":"1.4.1","depth":2,"path":"issues/only_full_group_by.md","ref":"issues/only_full_group_by.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"issues/no_zero_data.md","mtime":"2019-04-28T07:13:26.157Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-28T07:28:05.516Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"问题: MySQL使用零值时间所出现的问题","level":"1.4.2","depth":2,"previous":{"title":"问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题","level":"1.4.1","depth":2,"path":"issues/only_full_group_by.md","ref":"issues/only_full_group_by.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"issues/no_zero_data.md","mtime":"2019-04-28T07:32:56.443Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-28T07:33:01.427Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
