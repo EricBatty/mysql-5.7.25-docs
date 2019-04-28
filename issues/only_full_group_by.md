@@ -32,7 +32,7 @@ select语句：select id, user_id, sum(appr_id) from appr group by role--------
 select语句：select * appr group by id ----------------------------------------------------------------(不合法)
 ```
 
-##### ONLY_FULL_GROUP_BY这种模式的特点
+##### `ONLY_FULL_GROUP_BY` 模式的特点
 1. 只要有聚合函数sum()，count()，max()，avg()等函数就需要用到group by，否则就会报上面的错误。
 2. group by id(id是主键)的时候，select什么都没有问题，包括有聚合函数。
 3. group by role(非主键)的时候，select只能是聚合函数和role(group by的字段),否则报错
