@@ -39,7 +39,7 @@ select语句：select * appr group by id ---------------------------------------
 
 #### 解决问题的方案
 
-1). 命令行输入 临时更改重启失效
+##### 1. 命令行输入 临时更改重启失效
 
 ```
 set @@GLOBAL.sql_mode='';
@@ -49,7 +49,7 @@ set sql_mode ='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISI
 _BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 ```
 
-2). 修改MySQL配置文件
+##### 2. 修改MySQL配置文件
 在 my.cnf 文件中 mysqld 区域添加去掉 `ONLY_FULL_GROUP_BY` 模式的 `sql_mode`
 
 ```
