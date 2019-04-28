@@ -65,10 +65,9 @@ mysql> SELECT @@sql_mode ;
 #### 修复当前问题，以便在运行ALTER TABLE等语句时不会抛出错误。
 
 ##### 几个修复方法：
-
 ##### 1. sql_mode通过删除 `NO_ZERO_DATE` 和更改允许零日期 `NO_ZERO_IN_DATE`。更改可以通过命令行临时修改也可以通过my.cnf永久更改。
 
-###### 1. 对于临时更改，我们可以使用单个会话修改设置，而无需进行全局更改。
+###### a. 对于临时更改，我们可以使用单个会话修改设置，而无需进行全局更改。
 
 ```
 -- save current setting of sql_mode
@@ -87,7 +86,7 @@ SET @@sql_mode := @new_sql_mode ;
 SET @@sql_mode := @old_sql_mode ;
 ```
 
-###### 2. 对于全局修改my.cnf
+###### b. 对于全局修改my.cnf
 
 ```
 在 my.cnf 文件中 mysqld 区域添加
