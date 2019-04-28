@@ -1,0 +1,395 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="no_zero_data.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../install/">
+            
+                <a href="../install/">
+            
+                    
+                    安   装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../install/CentOS7.X.html">
+            
+                <a href="../install/CentOS7.X.html">
+            
+                    
+                    安装: CentOS7.X install MySQL5.7.25 示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../output/">
+            
+                <a href="../output/">
+            
+                    
+                    主   从
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../MasterSlave/base.html">
+            
+                <a href="../MasterSlave/base.html">
+            
+                    
+                    主从: MySQL设置主从同步基础设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../MasterSlave/command.html">
+            
+                <a href="../MasterSlave/command.html">
+            
+                    
+                    主从: 有关主从设置的一些命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    问   题
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1" data-path="only_full_group_by.html">
+            
+                <a href="only_full_group_by.html">
+            
+                    
+                    问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="no_zero_data.html">
+            
+                <a href="no_zero_data.html">
+            
+                    
+                    问题: 问题：MySQL使用零值时间所出现的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x95EE;&#x9898;-57-&#x9ED8;&#x8BA4;&#x542F;&#x7528;onlyfullgroupby&#x6A21;&#x5F0F;&#x9020;&#x6210;&#x4EE5;&#x524D;&#x7248;&#x672C;&#x4E0D;&#x517C;&#x5BB9;&#x95EE;&#x9898;">&#x95EE;&#x9898;: 5.7 &#x9ED8;&#x8BA4;&#x542F;&#x7528;only_full_group_by&#x6A21;&#x5F0F;&#x9020;&#x6210;&#x4EE5;&#x524D;&#x7248;&#x672C;&#x4E0D;&#x517C;&#x5BB9;&#x95EE;&#x9898;</h1>
+<h4 id="maven-&#x9879;&#x76EE;&#x62A5;&#x9519;">maven &#x9879;&#x76EE;&#x62A5;&#x9519;</h4>
+<p>expression #2 of SELECT list contains nonaggregated column &apos;newhelp.appr.title&apos;; this is incompatible with sql_mode=only_full_group_by&apos;</p>
+<h4 id="&#x9047;&#x5230;&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;">&#x9047;&#x5230;&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;</h4>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x968F;&#x7740;MySQL&#x7248;&#x672C;&#x66F4;&#x65B0;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5728;MySQL5.7&#x7248;&#x672C;&#x4E4B;&#x540E;&#x5BF9;group by&#x8FDB;&#x884C;&#x4E86;&#x4F18;&#x5316;&#x3002;&#x4ED6;&#x9ED8;&#x8BA4;&#x542F;&#x52A8;&#x4E86;<code>ONLY_FULL_GROUP_BY</code>&#x6A21;&#x5F0F;&#x3002;
+&#x67E5;&#x770B;&#x5F53;&#x524D; <code>sql_mode</code>&#x3002;</p>
+<pre><code>mysql&gt; SELECT @@sql_mode ;
++-------------------------------------------------------------------------------------------------------------------------------------------+
+| @@sql_mode                                                                                                                                |
++-------------------------------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION |
++-------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre><p>&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x7684;&#x5B98;&#x65B9;&#x89E3;&#x91CA;&#xFF1A;<code>ONLY_FULL_GROUP_BY</code>&#x662F;MySQL&#x6570;&#x636E;&#x5E93;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;sql_mode&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;sql_mode&#x6765;&#x4FDD;&#x8BC1;SQL&#x8BED;&#x53E5;&#x201C;&#x5206;&#x7EC4;&#x6C42;&#x6700;&#x503C;&#x201D;&#x5408;&#x6CD5;&#x6027;&#x7684;&#x68C0;&#x67E5;&#x3002;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x91C7;&#x7528;&#x4E86;&#x4E0E;Oracle&#x3001;DB2&#x7B49;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x3002;&#x5373;&#x4E0D;&#x5141;&#x8BB8;<code>select target list</code> &#x4E2D;&#x51FA;&#x73B0;&#x8BED;&#x4E49;&#x4E0D;&#x660E;&#x786E;&#x7684;&#x5217;&#x3002;
+&#x901A;&#x4FD7;&#x7684;&#x8BB2;&#x5C31;&#x662F;&#xFF1A;&#x5BF9;&#x4E8E;&#x7528;&#x5230;GROUP BY&#x7684;select&#x8BED;&#x53E5;&#xFF0C;&#x67E5;&#x51FA;&#x6765;&#x7684;&#x5217;&#x5FC5;&#x987B;&#x662F;group by&#x540E;&#x9762;&#x58F0;&#x660E;&#x7684;&#x5217;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x805A;&#x5408;&#x51FD;&#x6570;&#x91CC;&#x9762;&#x7684;&#x5217;&#x3002;</p>
+<p><img src="../images/table.png" alt="image.png"></p>
+<pre><code>select&#x8BED;&#x53E5;&#xFF1A;select id, sum(appr_id) from appr group by id------------------------------------(&#x5408;&#x6CD5;)
+
+select&#x8BED;&#x53E5;&#xFF1A;select id, user_id, sum(appr_id) from appr group by id-------------------------(&#x5408;&#x6CD5;)
+
+select&#x8BED;&#x53E5;&#xFF1A;select id, sum(appr_id) from appr group by role----------------------------------(&#x4E0D;&#x5408;&#x6CD5;)
+
+select&#x8BED;&#x53E5;&#xFF1A;select id, user_id, sum(appr_id) from appr group by role-----------------------(&#x4E0D;&#x5408;&#x6CD5;)
+
+select&#x8BED;&#x53E5;&#xFF1A;select * appr group by id ----------------------------------------------------------------(&#x4E0D;&#x5408;&#x6CD5;)
+</code></pre><h5 id="onlyfullgroupby&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x7684;&#x7279;&#x70B9;">ONLY_FULL_GROUP_BY&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x7684;&#x7279;&#x70B9;</h5>
+<ol>
+<li>&#x53EA;&#x8981;&#x6709;&#x805A;&#x5408;&#x51FD;&#x6570;sum()&#xFF0C;count()&#xFF0C;max()&#xFF0C;avg()&#x7B49;&#x51FD;&#x6570;&#x5C31;&#x9700;&#x8981;&#x7528;&#x5230;group by&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x4F1A;&#x62A5;&#x4E0A;&#x9762;&#x7684;&#x9519;&#x8BEF;&#x3002;</li>
+<li>group by id(id&#x662F;&#x4E3B;&#x952E;)&#x7684;&#x65F6;&#x5019;&#xFF0C;select&#x4EC0;&#x4E48;&#x90FD;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x5305;&#x62EC;&#x6709;&#x805A;&#x5408;&#x51FD;&#x6570;&#x3002;</li>
+<li>group by role(&#x975E;&#x4E3B;&#x952E;)&#x7684;&#x65F6;&#x5019;&#xFF0C;select&#x53EA;&#x80FD;&#x662F;&#x805A;&#x5408;&#x51FD;&#x6570;&#x548C;role(group by&#x7684;&#x5B57;&#x6BB5;),&#x5426;&#x5219;&#x62A5;&#x9519;</li>
+</ol>
+<h4 id="&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x65B9;&#x6848;">&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x65B9;&#x6848;</h4>
+<ol>
+<li>&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165; &#x4E34;&#x65F6;&#x66F4;&#x6539;&#x91CD;&#x542F;&#x5931;&#x6548;
+```
+set @@GLOBAL.sql_mode=&apos;&apos;;</li>
+</ol>
+<p>set sql_mode =&apos;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION</p>
+<p>_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&apos;;</p>
+<pre><code>2. &#x4FEE;&#x6539;MySQL&#x914D;&#x7F6E;&#x6587;&#x4EF6;
+&#x5728; my.cnf &#x6587;&#x4EF6;&#x4E2D; mysqld &#x533A;&#x57DF;&#x6DFB;&#x52A0;&#x53BB;&#x6389; `ONLY_FULL_GROUP_BY` &#x6A21;&#x5F0F;&#x7684; `sql_mode`
+</code></pre><p>[mysqld]
+sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+```</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 问   题">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="no_zero_data.html" class="navigation navigation-next " aria-label="Next page: 问题: 问题：MySQL使用零值时间所出现的问题">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题","level":"1.4.1","depth":2,"next":{"title":"问题: 问题：MySQL使用零值时间所出现的问题","level":"1.4.2","depth":2,"path":"issues/no_zero_data.md","ref":"issues/no_zero_data.md","articles":[]},"previous":{"title":"问   题","level":"1.4","depth":1,"path":"issues/README.md","ref":"issues/README.md","articles":[{"title":"问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题","level":"1.4.1","depth":2,"path":"issues/only_full_group_by.md","ref":"issues/only_full_group_by.md","articles":[]},{"title":"问题: 问题：MySQL使用零值时间所出现的问题","level":"1.4.2","depth":2,"path":"issues/no_zero_data.md","ref":"issues/no_zero_data.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"issues/only_full_group_by.md","mtime":"2019-04-28T07:20:19.277Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-28T07:20:55.658Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

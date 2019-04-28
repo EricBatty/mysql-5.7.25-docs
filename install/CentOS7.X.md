@@ -50,9 +50,10 @@
 ```
 [root@node90 mysql-5.7.25]# make install
 ```
-##### 7. 创建所需要的目录
+##### 7. 创建所需要的目录、文件
 ```
 [root@node90 mysql]# mkdir data logs etc
+[root@nbzhiwei mysql]# touch /usr/local/mysql/logs/mysql-error.log
 ```
 ##### 8. 初始化数据库
 修改MySQL目录权限

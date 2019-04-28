@@ -7,7 +7,6 @@ build() {
 commit() {
 	read -p  "添加本次提交注释:" comm
 	git add .
-	echo $comm
 	git commit -m  ''$comm''
 }
 
