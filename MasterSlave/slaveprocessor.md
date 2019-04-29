@@ -21,8 +21,9 @@ mysql> show processlist;
 | 12 | root        | localhost | NULL | Query   |     0 | starting                                               | show processlist |
 +----+-------------+-----------+------+---------+-------+--------------------------------------------------------+------------------+
 3 rows in set (0.00 sec)
+#从上面看出只有一个主进程在等待同步。
 ```
-从上面看出只有一个主进程在等待同步。
+
 #### 2、 查看当前复制类型和并行数量配置
 ```angular2
 mysql> show variables like 'slave_parallel_type';
