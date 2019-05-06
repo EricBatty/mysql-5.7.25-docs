@@ -33,6 +33,20 @@ bash --version          #检查bash版本
 # make
 # make test
 # make install
+#依赖列表
+yum -y install perl-Digest-MD5
+yum install perl-devel
+wget http://www.cpan.org/modules/by-module/Data/Data-Dumper-2.154.tar.gz
+tar xzvf Data-Dumper-2.154.tar.gz
+cd Data-Dumper-2.154
+perl Makefile.PL
+make
+make install
+yum install perl-DBI
+yum install perl-DBD-MySQL
+#下载单独的工具
+# wget percona.com/get/pt-summary
+[root@node90 ~]# wget wget percona.com/get/pt-heartbeat
 ```
 
 ## 3、主要工具介绍
