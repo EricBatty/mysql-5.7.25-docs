@@ -16,4 +16,5 @@
     * [Percona系列](tools/percona/README.md)
         * [percona-toolkit](tools/percona/percona-toolkit/README.md)
             * [安装及简介](tools/percona/percona-toolkit/install.md)
+            * [pt-heartbeat](tools/percona/percona-toolkit/pt-heartbeat.md)
 
