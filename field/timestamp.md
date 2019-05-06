@@ -1,8 +1,19 @@
 # 字段: 表timestamp字段
 
+## timestamp字段属性
 
+### 1、属性介绍
 
+CURRENT_TIMESTAMP ：当我更新这条记录的时候，这条记录的这个字段不会改变。
 
+CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ：当我更新这条记录的时候，这条记录的这个字段将会改变，即时间变为了更新时候的时间。
+
+### 2、修改字段属性值
+
+```angular2
+show create table tbl_ledgerrecord;  
+alter table tbl_ledgerrecord change intoStorageDate  intoStorageDate timestamp DEFAULT CURRENT_TIMESTAMP; 
+```
 
 ## TIMESTAMP设置默认值的几个应用实例
 
