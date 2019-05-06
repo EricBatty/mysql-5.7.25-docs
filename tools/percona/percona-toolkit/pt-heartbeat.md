@@ -73,7 +73,7 @@ pt-heartbeat -D test --master-server-id 2 --check slave2
 ## 选项介绍
 
 ### 必需接收的选项：
-```angular2
+```anguflar2
 至少一个--stop，--update，--monitor，或--check。
 --update，--monitor和，--check是相互排斥的。
 --daemonize并且--check是相互排斥的。
@@ -98,7 +98,7 @@ type：数组
 阅读这个以逗号分隔的配置文件列表; 如果指定，则必须是命令行上的第一个选项。
 
 ### --create-table
---table如果心跳不存在，请创建心跳。
+--table如果心跳不存在，请创建心跳表。
 此选项使用以下MAGIC_create_heartbeat表定义创建由--database和指定的--table表：
 ```angular2
 CREATE TABLE heartbeat (
