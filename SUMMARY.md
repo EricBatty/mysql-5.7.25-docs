@@ -12,4 +12,8 @@
 * [问   题](issues/README.md)
     * [问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题](issues/only_full_group_by.md)
     * [问题: MySQL使用零值时间所出现的问题](issues/no_zero_data.md)
+* [工   具](tools/README.md)
+    * [Percona系列](tools/percona/README.md)
+        * [percona-toolkit](tools/percona/percona-toolkit/README.md)
+            * [安装及简介](tools/percona/percona-toolkit/install.md)
 
