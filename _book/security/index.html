@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>问题: mysqlbinlog 查看binlog时报错unknown variable 'default-character-set=utf8' · GitBook</title>
+        <title>安   全 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../tools/" />
+    <link rel="next" href="user/privileges.html" />
     
     
-    <link rel="prev" href="no_zero_data.html" />
+    <link rel="prev" href="../tools/percona/percona-toolkit/pt-heartbeat.html" />
     
 
     </head>
@@ -224,9 +224,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="./">
+        <li class="chapter " data-level="1.5" data-path="../issues/">
             
-                <a href="./">
+                <a href="../issues/">
             
                     
                     问   题
@@ -238,9 +238,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="only_full_group_by.html">
+        <li class="chapter " data-level="1.5.1" data-path="../issues/only_full_group_by.html">
             
-                <a href="only_full_group_by.html">
+                <a href="../issues/only_full_group_by.html">
             
                     
                     问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题
@@ -251,9 +251,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="no_zero_data.html">
+        <li class="chapter " data-level="1.5.2" data-path="../issues/no_zero_data.html">
             
-                <a href="no_zero_data.html">
+                <a href="../issues/no_zero_data.html">
             
                     
                     问题: MySQL使用零值时间所出现的问题
@@ -264,9 +264,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5.3" data-path="mysqlbinlogshowbinlog.html">
+        <li class="chapter " data-level="1.5.3" data-path="../issues/mysqlbinlogshowbinlog.html">
             
-                <a href="mysqlbinlogshowbinlog.html">
+                <a href="../issues/mysqlbinlogshowbinlog.html">
             
                     
                     问题: mysqlbinlog 查看binlog时报错unknown variable 'default-character-set=utf8'
@@ -365,9 +365,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="../security/">
+        <li class="chapter active" data-level="1.7" data-path="./">
             
-                <a href="../security/">
+                <a href="./">
             
                     
                     安   全
@@ -379,9 +379,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.7.1" data-path="../security/user/privileges.html">
+        <li class="chapter " data-level="1.7.1" data-path="user/privileges.html">
             
-                <a href="../security/user/privileges.html">
+                <a href="user/privileges.html">
             
                     
                     安全: 用户权限列表
@@ -427,7 +427,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >问题: mysqlbinlog 查看binlog时报错unknown variable 'default-character-set=utf8'</a>
+        <a href=".." >安   全</a>
     </h1>
 </div>
 
@@ -442,21 +442,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x95EE;&#x9898;-mysqlbinlog-&#x67E5;&#x770B;binlog&#x65F6;&#x62A5;&#x9519;unknown-variable-default-character-setutf8">&#x95EE;&#x9898;: mysqlbinlog &#x67E5;&#x770B;binlog&#x65F6;&#x62A5;&#x9519;unknown variable &apos;default-character-set=utf8&apos;</h1>
-<p>binlog &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x67E5;&#x770B;&#x5185;&#x5BB9;&#xFF0C;&#x9700;&#x8981;&#x501F;&#x52A9;mysqlbinlog&#x5DE5;&#x5177;&#xFF0C;&#x5C06;binlog&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;&#x53EF;&#x8BFB;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
-<h2 id="&#x51FA;&#x73B0;&#x7684;&#x62A5;&#x9519;">&#x51FA;&#x73B0;&#x7684;&#x62A5;&#x9519;</h2>
-<pre><code class="lang-angular2">[root@node90 mysql]# bin/mysqlbinlog data/mysql-bin.00001
-mysqlbinlog: [ERROR] unknown variable &apos;default-character-set=utf8mb4&apos;
-</code></pre>
-<h2 id="&#x62A5;&#x9519;&#x539F;&#x56E0;">&#x62A5;&#x9519;&#x539F;&#x56E0;</h2>
-<p>&#x539F;&#x56E0;&#x662F;mysqlbinlog&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x65E0;&#x6CD5;&#x8BC6;&#x522B;binlog&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x4E2D;&#x7684;default-character-set=utf8mb4&#x8FD9;&#x4E2A;&#x6307;&#x4EE4;&#x3002;</p>
-<h2 id="&#x89E3;&#x51B3;&#x62A5;&#x9519;">&#x89E3;&#x51B3;&#x62A5;&#x9519;</h2>
-<h3 id="&#x65B9;&#x6CD5;&#x4E00;">&#x65B9;&#x6CD5;&#x4E00;</h3>
-<p>&#x5728;MySQL&#x914D;&#x7F6E;my.cnf&#x6587;&#x4EF6;&#x4E2D;&#x5C06;<code>default-character-set=utf8mb</code>&#x4FEE;&#x6539;&#x4E3A;<code>character-set-server = utf8</code>&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8;MySQL&#x670D;&#x52A1;&#x3002;</p>
-<h3 id="&#x65B9;&#x6CD5;&#x4E8C;">&#x65B9;&#x6CD5;&#x4E8C;</h3>
-<p>&#x4F7F;&#x7528;--no-defaults&#x53C2;&#x6570;</p>
-<pre><code>mysqlbinlog --no-defaults mysql-bin.000004
-</code></pre>
+                                <h1 id="&#x5B89;---&#x5168;">&#x5B89;   &#x5168;</h1>
+
                                 
                                 </section>
                             
@@ -483,12 +470,12 @@ mysqlbinlog: [ERROR] unknown variable &apos;default-character-set=utf8mb4&apos;
 
             
                 
-                <a href="no_zero_data.html" class="navigation navigation-prev " aria-label="Previous page: 问题: MySQL使用零值时间所出现的问题">
+                <a href="../tools/percona/percona-toolkit/pt-heartbeat.html" class="navigation navigation-prev " aria-label="Previous page: pt-heartbeat">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../tools/" class="navigation navigation-next " aria-label="Next page: 工   具">
+                <a href="user/privileges.html" class="navigation navigation-next " aria-label="Next page: 安全: 用户权限列表">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -499,7 +486,7 @@ mysqlbinlog: [ERROR] unknown variable &apos;default-character-set=utf8mb4&apos;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"问题: mysqlbinlog 查看binlog时报错unknown variable 'default-character-set=utf8'","level":"1.5.3","depth":2,"next":{"title":"工   具","level":"1.6","depth":1,"path":"tools/README.md","ref":"tools/README.md","articles":[{"title":"Percona系列","level":"1.6.1","depth":2,"path":"tools/percona/README.md","ref":"tools/percona/README.md","articles":[{"title":"percona-toolkit","level":"1.6.1.1","depth":3,"path":"tools/percona/percona-toolkit/README.md","ref":"tools/percona/percona-toolkit/README.md","articles":[{"title":"安装及简介","level":"1.6.1.1.1","depth":4,"path":"tools/percona/percona-toolkit/install.md","ref":"tools/percona/percona-toolkit/install.md","articles":[]},{"title":"pt-heartbeat","level":"1.6.1.1.2","depth":4,"path":"tools/percona/percona-toolkit/pt-heartbeat.md","ref":"tools/percona/percona-toolkit/pt-heartbeat.md","articles":[]}]}]}]},"previous":{"title":"问题: MySQL使用零值时间所出现的问题","level":"1.5.2","depth":2,"path":"issues/no_zero_data.md","ref":"issues/no_zero_data.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"issues/mysqlbinlogshowbinlog.md","mtime":"2019-05-10T06:36:04.916Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-10T07:00:54.478Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"安   全","level":"1.7","depth":1,"next":{"title":"安全: 用户权限列表","level":"1.7.1","depth":2,"path":"security/user/privileges.md","ref":"security/user/privileges.md","articles":[]},"previous":{"title":"pt-heartbeat","level":"1.6.1.1.2","depth":4,"path":"tools/percona/percona-toolkit/pt-heartbeat.md","ref":"tools/percona/percona-toolkit/pt-heartbeat.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"security/README.md","mtime":"2019-05-10T06:52:51.613Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-10T07:00:54.478Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
