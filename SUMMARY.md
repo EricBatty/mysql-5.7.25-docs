@@ -13,6 +13,7 @@
     * [问题: 5.7 默认启用only_full_group_by模式造成以前版本不兼容问题](issues/only_full_group_by.md)
     * [问题: MySQL使用零值时间所出现的问题](issues/no_zero_data.md)
     * [问题: mysqlbinlog 查看binlog时报错unknown variable 'default-character-set=utf8'](issues/mysqlbinlogshowbinlog.md)
+    * [问题: MySQL同步报错故障处理总结](issues/mserror.md)
 * [工   具](tools/README.md)
     * [Percona系列](tools/percona/README.md)
         * [percona-toolkit](tools/percona/percona-toolkit/README.md)
