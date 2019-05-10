@@ -31,6 +31,13 @@ pt-heartbeat [OPTIONS] [DSN] --update|--monitor|--check|--stop
 
 ## 描述
 
+**pt-hearbeat**在主库上运行时所需要的用户权限：
+
+```
+grant SUPER,REPLICATION  CLIENT on *.*  to 'pt_heartbeat'@'%';
+grant all  on pt_heartbeat.*  to 'pt_heartbeat'@'%';
+```
+
 **pt-heartbeat**是一个由两部分组成的MySQL和PostgreSQL复制延迟监控系统，它通过查看实际的复制数据来测量延迟。这避免了对复制机制本身的依赖，这是不可靠的，例如，在MySQL上SHOW SLAVE STATUS）。
 
 

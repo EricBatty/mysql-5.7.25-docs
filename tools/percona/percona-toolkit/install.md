@@ -27,27 +27,39 @@ bash --version          #检查bash版本
 快速安装步骤(缺省/usr/local/bin路径下，过程略)
 
 ```angular2
-# tar zxvf percona-toolkit-<version>.tar.gz
-# cd percona-toolkit-<version>
-# perl Makefile.PL   (安装到非缺省目录 perl Makefile.PL PREFIX=${HOME})
-# make
-# make test
-# make install
 #依赖列表
-yum -y install perl-Digest-MD5
-yum install perl-devel
+yum -y install perl-Digest-MD5  perl-devel perl-DBI perl-DBD-MySQL
 wget http://www.cpan.org/modules/by-module/Data/Data-Dumper-2.154.tar.gz
 tar xzvf Data-Dumper-2.154.tar.gz
 cd Data-Dumper-2.154
 perl Makefile.PL
 make
 make install
-yum install perl-DBI
-yum install perl-DBD-MySQL
-#下载单独的工具
-# wget percona.com/get/pt-summary
-[root@node90 ~]# wget wget percona.com/get/pt-heartbeat
+#安装整个工具包 percona-toolkit
+# tar zxvf percona-toolkit-<version>.tar.gz
+# cd percona-toolkit-<version>
+# perl Makefile.PL   (安装到非缺省目录 perl Makefile.PL PREFIX=${HOME})
+# make
+# make test
+# make install
+
+#下载安装单独的工具
+# wget percona.com/get/pt-summary   举例1
+# wget percona.com/get/pt-heartbeat  举例2
+
+#运行pt-heartbeat报错
+Can't locate Time/HiRes.pm in @INC (@INC contains: /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl  /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .) at /usr/local/bin/pt-heartbeat line 3879.
+
+# 解决运行pt-heartbeat报错
+perl -MCPAN -e 'install Time::HiRes' 
+
+#提示找不到CPAN
+yum install  perl-CPAN 
+perl -MCPAN -e shell 
+cpan[2]> install Time::HiRes 
+cpan[3]> exit 
 ```
+
 
 ## 3、主要工具介绍
 
